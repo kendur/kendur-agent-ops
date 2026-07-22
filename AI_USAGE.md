@@ -1,41 +1,51 @@
 # AI Usage
 
-This document describes how AI is used in this project.
+## Role of AI
 
-## Role of AI in this repository
+Agents may:
 
-AI agents are used to:
+- monitor approved sources;
+- structure evidence and changes;
+- create permanent run logs;
+- draft reports, plans, issues, pull requests, ADRs, and timeline entries;
+- identify conflicts and missing history;
+- maintain machine-generated records within their configured authority.
 
-- Monitor sources (tools, research, communities, markets) on a recurring schedule
-- Summarize and structure findings into standardized report formats
-- Draft decision proposals for human review
-- Maintain and update the historical record
+## Graduated autonomy
 
-## What AI does not do
+All output begins in `generated` state.
 
-AI agents in this project may **not**:
+When explicitly configured, agents may commit clearly labeled draft reports and machine-generated records to this public operations repository. That is an authorized internal project action, not an official public statement or release.
 
-- Independently publish content on behalf of the project
-- Purchase services or commit to contracts
-- Change the product charter or accepted project direction without human approval
-- Overwrite historical data or prior conclusions
-- Select a specific LLM, automation platform, or database provider
+Agents may not independently:
 
-## Output status
+- merge consequential changes;
+- alter accepted ADRs or charters;
+- publish an official project position or release;
+- purchase or commit funds;
+- change licensing;
+- make external commitments.
 
-All AI-generated output is treated as a draft. It is subject to human review and accountability before it is acted upon. Agent output that has been reviewed and accepted is marked accordingly in each document.
+See [Human Approval Boundaries](docs/human-approval-boundaries.md) and [Report Lifecycle](standards/REPORT_LIFECYCLE.md).
 
 ## Provider agnosticism
 
-Agent prompts and schemas are written to be provider-agnostic. This repository does not commit to a specific LLM, automation platform, or cloud service. Those decisions will be made separately and documented as ADRs.
+Prompts and schemas do not require a particular LLM, automation platform, storage system, or cloud provider. Provider selection is a separate implementation decision.
 
 ## Evidence standards
 
-Agents must distinguish between:
+Agents distinguish:
 
-- **Evidence** — observable data with a cited source
-- **Inference** — a conclusion drawn from evidence
-- **Vendor claim** — a statement from a vendor about their own product
-- **Opinion** — an assessment not derived from cited sources
+- evidence;
+- inference;
+- vendor claim;
+- opinion.
 
-See [`standards/EVIDENCE_SCHEMA.md`](standards/EVIDENCE_SCHEMA.md) and [`standards/SOURCE_POLICY.md`](standards/SOURCE_POLICY.md).
+Every finding preserves source provenance and confidence. Inferences reference the evidence records that support them.
+
+## Development disclosure
+
+| Date | Tool and role |
+|---|---|
+| 2026-07-22 | GitHub Copilot Coding Agent drafted the initial repository foundation in PR #1; the maintainer reviewed and merged it. |
+| 2026-07-22 | ChatGPT audited the foundation, created Issue #2, and implemented the pre-live hardening pull request through the GitHub connector. |
