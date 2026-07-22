@@ -2,30 +2,43 @@
 
 ## Executive Support System
 
-The Executive Support System is the first bounded and potentially monetizable module on the path toward Nexus. It is defined by a focused scope:
+Canonical product repository: <https://github.com/kendur/kendur-executive-support>
 
-- Notion-centered: Notion is the primary interface and data store for the initial version.
-- AI-optional: the product functions without AI assistance; AI enhances but does not replace core functionality.
-- Capture-focused: the central value proposition is capturing thoughts, preserving context, identifying next actions, and recovering from interruptions.
+The Executive Support System is the first bounded and potentially monetizable module on the path toward Nexus. It is Notion-centered, AI-optional, and capture-source agnostic.
 
-## This repository
+The product repository is the source of truth for:
 
-This repository governs the AI agent team that supports the Executive Support System project. It does not contain the product itself. Its purpose is to define how agents research, monitor, report, and propose plans in service of that product.
+- product vision and scope;
+- product decisions and ADRs;
+- product history and roadmap;
+- Notion, capture, automation, AI, licensing, and service design.
+
+## KenDur Agent Operations
+
+This repository governs the AI team supporting the product. It is the source of truth for:
+
+- agent roles and charters;
+- prompts and output contracts;
+- evidence, confidence, reporting, and escalation standards;
+- agent-run history;
+- agent-governance ADRs;
+- generated research and market reports.
+
+## Cross-repository history
+
+The Project Historian reviews both repositories. It proposes links, timeline entries, and ADRs in the repository that owns the decision.
+
+Records should be cross-referenced rather than copied and silently edited in two places. Product decisions belong in the product repository; agent-governance decisions belong here.
 
 ## Nexus
 
-Nexus is the broader system that the Executive Support System is a step toward. It is not defined here beyond its existence as a long-term destination. The Executive Support System must be a useful, self-contained product before Nexus work begins.
+Nexus is the broader long-term system. The Executive Support System must remain useful independently while preserving integration points for later Nexus modules.
 
-## Development history
-
-The entire development process—from initial concept through operational decisions—must remain historically understandable. This repository is part of that record. Decisions made here are logged in `docs/decisions/`. Context about the project's origin is in `docs/history/`.
-
-## Relationship diagram
-
-```
-Nexus (future)
-  └── Executive Support System (current focus)
-        └── KenDur Agent Operations (this repository)
+```text
+Nexus
+  └── Executive Support System
+        ├── Product source of truth: kendur-executive-support
+        └── Agent governance: kendur-agent-ops
               ├── Project Historian and Decision Steward
               ├── Capture Ecosystem Analyst
               ├── Behavioral Research Analyst
