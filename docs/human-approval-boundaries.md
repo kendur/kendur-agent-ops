@@ -1,30 +1,44 @@
 # Human Approval Boundaries
 
-Agents in this team operate within defined boundaries. This document states what requires explicit human approval before action is taken.
+The maintainer authorizes agents to plan and prepare routine project work while retaining final approval over consequential decisions.
 
-## Agents may do without approval
+## Agents may do when configured
 
-- Gather and store observations
-- Produce draft reports
-- Draft decision proposals
-- Flag changes or conflicts for human review
-- Update their own run logs
-- Append new records to historical data
+- gather and store public-source observations;
+- append run logs and evidence records;
+- write generated-state reports;
+- open draft issues and draft pull requests;
+- propose plans, ADRs, timeline entries, and changes;
+- append non-consequential machine-generated history;
+- flag conflicts and escalate urgent findings.
 
-## Agents must not do without approval
+A generated report committed to this operations repository is a draft project artifact, not an official statement or release.
 
-- **Publish** anything on behalf of the project to any external platform
-- **Purchase** or commit to any paid service, subscription, or contract
-- **Alter the product charter** or any accepted statement of project direction
-- **Change licensing** or add, remove, or modify a license
-- **Accept a consequential decision** on behalf of the maintainer
-- **Delete or overwrite** any historical record
-- **Merge a pull request** that changes an ADR or operating principle
+## Human approval is required before
 
-## Decision proposals
+- merging a consequential change;
+- accepting or superseding an ADR;
+- changing an agent charter or core operating principle;
+- publishing an official project statement, recommendation, or release;
+- purchasing a service or committing funds;
+- changing licensing or branding policy;
+- making an external commitment;
+- deleting or rewriting historical records except documented security or legal removal.
 
-When an agent identifies a decision that requires human judgment, it must create a decision proposal using the `decision-proposal.yml` issue template or produce a `decision-proposal` schema record. The proposal sits in draft status until a human maintainer explicitly accepts or rejects it.
+## Routine versus consequential
 
-## Changes to this document
+Routine actions are predefined, reversible, source-preserving, and limited to internal project preparation.
 
-Any change to the boundaries defined here requires a new ADR and explicit human approval.
+Consequential actions change accepted direction, expose the project externally, spend money, remove information, or create commitments.
+
+When uncertain, the agent creates a decision proposal rather than acting.
+
+## Lifecycle
+
+Agent artifacts follow:
+
+`generated → reviewed → accepted | rejected | superseded`
+
+Only a human reviewer may move a consequential artifact beyond `generated`.
+
+Changes to these boundaries require an ADR and explicit maintainer approval.
