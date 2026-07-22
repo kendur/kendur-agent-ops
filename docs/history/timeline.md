@@ -1,6 +1,6 @@
 # Timeline
 
-Entries are appended. Corrections are added as new entries rather than silently rewriting accepted history.
+Entries are appended. During bootstrapping, placeholder entries may be corrected; after live runs begin, corrections are added as new entries rather than editing prior rows.
 
 | Date | Event |
 |---|---|

@@ -1,1 +1,73 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","$id":"decision-proposal.schema.json","title":"Decision Proposal","description":"An agent-created proposal submitted for human review.","type":"object","required":["proposal_id","proposed_by","proposed_date","status","lifecycle","title","context","decision","alternatives","consequences"],"properties":{"proposal_id":{"type":"string","minLength":1},"proposed_by":{"type":"string","minLength":1},"proposed_date":{"type":"string","format":"date"},"status":{"const":"proposed"},"lifecycle":{"const":"generated"},"title":{"type":"string","minLength":1},"context":{"type":"string","minLength":1},"decision":{"type":"string","minLength":1},"alternatives":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},"consequences":{"type":"string","minLength":1},"sources":{"type":"array","items":{"type":"object","required":["url","title","access_date","claim_type"],"properties":{"url":{"type":"string","format":"uri"},"title":{"type":"string","minLength":1},"access_date":{"type":"string","format":"date"},"claim_type":{"type":"string","enum":["evidence","inference","vendor-claim","opinion"]},"author":{"type":["string","null"]},"publication":{"type":["string","null"]}},"additionalProperties":false}},"related_issue":{"type":["string","null"],"format":"uri"}},"additionalProperties":false}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "decision-proposal.schema.json",
+  "title": "Decision Proposal",
+  "description": "An agent-created proposal submitted for human review.",
+  "type": "object",
+  "required": [
+    "proposal_id",
+    "proposed_by",
+    "proposed_date",
+    "status",
+    "lifecycle",
+    "title",
+    "context",
+    "decision",
+    "alternatives",
+    "consequences"
+  ],
+  "properties": {
+    "proposal_id": { "type": "string", "minLength": 1 },
+    "proposed_by": { "type": "string", "minLength": 1 },
+    "proposed_date": { "type": "string", "format": "date" },
+    "status": {
+      "type": "string",
+      "enum": ["proposed", "accepted", "rejected", "superseded"]
+    },
+    "lifecycle": {
+      "type": "string",
+      "enum": ["generated", "reviewed", "accepted", "rejected", "superseded"]
+    },
+    "title": { "type": "string", "minLength": 1 },
+    "context": { "type": "string", "minLength": 1 },
+    "decision": { "type": "string", "minLength": 1 },
+    "alternatives": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "consequences": { "type": "string", "minLength": 1 },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url", "title", "access_date", "claim_type"],
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "title": { "type": "string", "minLength": 1 },
+          "access_date": { "type": "string", "format": "date" },
+          "claim_type": {
+            "type": "string",
+            "enum": ["evidence", "inference", "vendor-claim", "opinion"]
+          },
+          "author": { "type": ["string", "null"] },
+          "publication": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "related_issue": { "type": ["string", "null"], "format": "uri" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "lifecycle": { "const": "generated" } },
+        "required": ["lifecycle"]
+      },
+      "then": {
+        "properties": { "status": { "const": "proposed" } }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

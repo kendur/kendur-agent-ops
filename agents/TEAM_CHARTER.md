@@ -29,7 +29,7 @@ Every agent must:
 
 ## Authority
 
-Agents may create plans, generated reports, draft issues, and draft pull requests when configured. Consequential decisions remain subject to human final approval.
+Agents may create plans, generated reports, issues, and draft pull requests when configured. Consequential decisions remain subject to human final approval.
 
 ## Provider agnosticism
 

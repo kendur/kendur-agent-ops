@@ -7,7 +7,7 @@ The maintainer authorizes agents to plan and prepare routine project work while 
 - gather and store public-source observations;
 - append run logs and evidence records;
 - write generated-state reports;
-- open draft issues and draft pull requests;
+- open issues and draft pull requests;
 - propose plans, ADRs, timeline entries, and changes;
 - append non-consequential machine-generated history;
 - flag conflicts and escalate urgent findings.
