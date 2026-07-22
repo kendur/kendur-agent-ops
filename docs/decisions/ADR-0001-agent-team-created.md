@@ -1,31 +1,31 @@
 # ADR-0001: Agent Team Created for Executive Support System
 
-**Date:** 2026-07  
+**Date:** 2026-07-22  
 **Status:** Accepted
 
 ## Context
 
-The Executive Support System project requires ongoing research and monitoring across several domains: capture tools, behavioral research, market trends, and project history. The human maintainer cannot reliably sustain this attention manually, particularly given executive dysfunction challenges that make continuous monitoring difficult.
+The Executive Support System requires ongoing monitoring of capture tools, behavioral research, markets, communities, and project history. Human-only monitoring is not sustainable while the product is being designed and tested.
 
 ## Decision
 
-A structured AI agent team is established to support the project. Four initial roles are defined:
+Establish four initial agent roles:
 
 1. Project Historian and Decision Steward
 2. Capture Ecosystem Analyst
 3. Behavioral Research Analyst
 4. Market and Community Analyst
 
-This repository (KenDur Agent Operations) governs the team.
+KenDur Agent Operations governs their charters, prompts, standards, and run history.
 
 ## Alternatives considered
 
-- **Ad-hoc AI queries** — too fragile; findings are not preserved, provenance is lost, and there is no consistent structure.
-- **Human-only monitoring** — not sustainable given the scope and the executive function constraints described in `docs/history/0001-origin-and-context.md`.
-- **Single general-purpose agent** — a single agent covering all domains would produce undifferentiated output and make it harder to maintain focused charters and standards.
+- Ad-hoc AI queries
+- Human-only monitoring
+- One undifferentiated general-purpose agent
 
 ## Consequences
 
-- Agent charters, prompts, and output schemas must be maintained in this repository.
-- Agents operate within the boundaries defined in `docs/human-approval-boundaries.md`.
-- All agent output is treated as a draft subject to human review.
+- Agent roles and contracts are versioned here.
+- Product decisions remain in the product repository.
+- Agent output follows defined evidence, history, communication, and approval rules.
