@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "report.schema.json",
+  "title": "Agent Report",
+  "description": "A structured report produced by an agent after a run.",
+  "type": "object",
+  "required": ["agent", "run_id", "run_date", "status"],
+  "properties": {
+    "agent": {
+      "type": "string",
+      "enum": [
+        "project-historian",
+        "capture-ecosystem-analyst",
+        "behavioral-research-analyst",
+        "market-community-analyst"
+      ]
+    },
+    "run_id": {
+      "type": "string",
+      "description": "Unique identifier for this run (e.g., ISO 8601 timestamp + agent name)."
+    },
+    "run_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["report", "no-change", "escalation"]
+    },
+    "key_items": {
+      "type": "array",
+      "maxItems": 3,
+      "items": { "type": "string" },
+      "description": "At most three key findings. Required when status is 'report' or 'escalation'."
+    },
+    "detail": {
+      "type": "object",
+      "description": "Supporting detail keyed by item index or topic label.",
+      "additionalProperties": true
+    },
+    "observations": {
+      "type": "array",
+      "items": { "$ref": "observation.schema.json" },
+      "description": "Individual observations supporting the report."
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["url", "title", "access_date", "claim_type"],
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "title": { "type": "string" },
+          "access_date": { "type": "string", "format": "date" },
+          "claim_type": {
+            "type": "string",
+            "enum": ["evidence", "inference", "vendor-claim", "opinion"]
+          },
+          "author": { "type": ["string", "null"] },
+          "publication": { "type": ["string", "null"] }
+        }
+      },
+      "description": "Required when status is 'report' or 'escalation'."
+    }
+  },
+  "additionalProperties": false
+}

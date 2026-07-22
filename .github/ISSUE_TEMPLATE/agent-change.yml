@@ -1,0 +1,63 @@
+name: Agent Change
+description: Propose a change to an agent charter, prompt, or output schema.
+title: "[Agent Change] "
+labels: ["agent-change"]
+body:
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Agent
+      description: Which agent does this change affect?
+      options:
+        - project-historian
+        - capture-ecosystem-analyst
+        - behavioral-research-analyst
+        - market-community-analyst
+        - all agents (team charter)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: file
+    attributes:
+      label: File affected
+      description: Which file does this change affect?
+      options:
+        - CHARTER.md
+        - PROMPT.md
+        - OUTPUT_SCHEMA.md
+        - TEAM_CHARTER.md
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current behavior or content
+      description: What does the file currently say or do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed change
+      description: What change are you proposing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason
+      description: Why is this change needed?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: adr
+    attributes:
+      label: ADR required?
+      options:
+        - label: This change requires a new ADR in docs/decisions/
