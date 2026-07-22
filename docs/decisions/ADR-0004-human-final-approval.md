@@ -1,37 +1,40 @@
 # ADR-0004: Human Maintainer Holds Final Approval
 
-**Date:** 2026-07  
+**Date:** 2026-07-22  
 **Status:** Accepted
 
 ## Context
 
-AI agents can produce useful drafts, proposals, and recommendations. Without a clear boundary, there is a risk that agent output is treated as a decision rather than a proposal, or that agents gradually accumulate scope they were not intended to have.
+Agents are useful only when they can proactively prepare work. Requiring approval for every log, draft, or proposed plan creates unnecessary burden, while allowing consequential autonomous action creates accountability risk.
 
 ## Decision
 
-The human maintainer holds final approval over all consequential decisions. Agents may propose but may not accept, publish, commit, or act on any consequential decision independently.
+The maintainer holds final approval over consequential decisions. Agents may perform explicitly configured routine, reversible project-preparation actions.
 
-Consequential decisions include but are not limited to:
+Agents may:
 
-- Changes to the product charter or project direction
-- Selection of an automation platform, LLM provider, or database
-- Addition or removal of a license
-- Publication of any content on behalf of the project
-- Acceptance of any paid subscription or contract
-- Merging changes to ADRs or operating principles
+- append run logs and evidence;
+- write generated-state reports;
+- open draft issues and pull requests;
+- propose plans, ADRs, and timeline entries.
 
-## Rationale
+Human approval is required before:
 
-- AI output is a draft. Treating it as a decision creates accountability gaps.
-- The project record must reflect human judgment at consequential points.
-- Trust in agent output is built incrementally; starting with human approval at all boundaries is the safer baseline.
-
-## Constraints
-
-- This boundary is documented in `docs/human-approval-boundaries.md` and referenced in all agent charters.
-- Changes to this boundary require a new ADR and explicit human acceptance.
+- merging consequential changes;
+- accepting or superseding ADRs;
+- changing charters, licensing, or project direction;
+- publishing official statements or releases;
+- spending money or making external commitments.
 
 ## Alternatives considered
 
-- **Agents may act within predefined categories** — creates ambiguity about what is predefined; deferred until trust and operational patterns are established.
-- **No formal boundary** — unacceptable; the project record and accountability model depend on this constraint.
+- Human approval for every agent action
+- Broad autonomous authority
+- No formal boundary
+
+## Consequences
+
+- Routine operations can proceed without approval fatigue.
+- Generated artifacts remain drafts until reviewed.
+- Consequential accountability stays with the maintainer.
+- Authority changes require a superseding ADR.
