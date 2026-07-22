@@ -1,16 +1,19 @@
 # Milestones
 
-Milestones mark meaningful points of completion or transition. They are recorded here when reached.
-
----
+Milestones mark meaningful completion or transition points.
 
 ## Milestone 0001 — Documentation foundation established
 
-**Date:** 2026-07  
+**Date:** 2026-07-22  
 **Status:** Complete
 
-The repository structure, operating principles, agent charters, standards, schemas, and initial ADRs were created. The project has a documented foundation from which agent development and operational decisions can proceed.
+The repository structure, operating principles, four agent charters, standards, schemas, and initial ADRs were created.
 
----
+## Milestone 0002 — Pre-live hardening
 
-_New milestones are appended below the last entry._
+**Date:** 2026-07-22  
+**Status:** In progress
+
+History is being linked to the product repository, schemas are being made executable, the capture scorecard is being expanded, and graduated autonomy is being defined before the first live agent run.
+
+New milestones are appended below.

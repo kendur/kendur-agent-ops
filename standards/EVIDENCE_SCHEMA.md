@@ -1,46 +1,46 @@
 # Evidence Schema
 
-This document defines how evidence is structured when agents record observations or findings.
-
-## Evidence object
+Each observation records one claim and one or more sources.
 
 ```json
 {
-  "claim": "string — the specific assertion being made",
+  "observation_id": "stable-id",
+  "claim": "specific assertion",
   "claim_type": "evidence | inference | vendor-claim | opinion",
   "confidence": "high | medium | low",
-  "source": {
-    "url": "string",
-    "title": "string",
-    "access_date": "YYYY-MM-DD",
-    "author": "string or null",
-    "publication": "string or null"
-  },
-  "conflicts_with": ["reference to prior finding id or null"]
+  "sources": [
+    {
+      "url": "https://example.com/source",
+      "title": "Source title",
+      "access_date": "YYYY-MM-DD",
+      "claim_type": "evidence",
+      "author": null,
+      "publication": null
+    }
+  ],
+  "supporting_evidence_ids": [],
+  "conflicts_with": [],
+  "lifecycle": "generated"
 }
 ```
 
 ## Claim types
 
-| Type | When to use |
-|---|---|
-| `evidence` | The claim is directly supported by the cited source |
-| `inference` | The claim is a conclusion drawn from one or more evidence items |
-| `vendor-claim` | The claim comes from the vendor of the product being discussed |
-| `opinion` | The claim is an assessment not supported by cited evidence |
+- `evidence` — directly supported by cited material or observable data;
+- `inference` — a conclusion drawn from evidence;
+- `vendor-claim` — a vendor statement about its own product;
+- `opinion` — an assessment not represented as sourced fact.
 
-## Confidence levels
+## Lineage
 
-| Level | When to use |
-|---|---|
-| `high` | Multiple independent sources corroborate the claim |
-| `medium` | A single credible source supports the claim |
-| `low` | The source is indirect, secondhand, or uncertain |
+An inference must reference at least one supporting evidence observation by ID. A conflict references the prior observation IDs it challenges.
 
-## Inferences
+Sources are retained with each observation so later reports can be reconstructed even when conclusions change.
 
-When claim_type is `inference`, the agent must identify which evidence items support the inference. Inferences must be labeled as inferences in the report and must not be presented as if they were direct observations or findings from a cited source.
+## Confidence
 
-## Conflicts
+Confidence reflects evidence quality and the uncertainty of the reasoning step. An inference does not automatically inherit the confidence of its sources.
 
-When a claim conflicts with a prior finding, the `conflicts_with` field must reference the prior finding. The conflict must be surfaced in the report.
+## History
+
+Corrections and reassessments create new observations. Prior records remain and may be superseded through lifecycle metadata.

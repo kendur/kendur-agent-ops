@@ -2,14 +2,21 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "agent-run.schema.json",
   "title": "Agent Run",
-  "description": "A log record for a single agent execution.",
+  "description": "A permanent log record for every scheduled or manual agent execution.",
   "type": "object",
-  "required": ["run_id", "agent", "started_at", "completed_at", "status", "report_produced"],
+  "required": [
+    "run_id",
+    "agent",
+    "started_at",
+    "completed_at",
+    "execution_status",
+    "change_status",
+    "report_produced",
+    "notification_sent",
+    "report_id"
+  ],
   "properties": {
-    "run_id": {
-      "type": "string",
-      "description": "Unique identifier for this run."
-    },
+    "run_id": { "type": "string", "minLength": 1 },
     "agent": {
       "type": "string",
       "enum": [
@@ -19,37 +26,44 @@
         "market-community-analyst"
       ]
     },
-    "started_at": {
-      "type": "string",
-      "format": "date-time",
-      "description": "ISO 8601 datetime when the run started."
-    },
-    "completed_at": {
-      "type": "string",
-      "format": "date-time",
-      "description": "ISO 8601 datetime when the run completed."
-    },
-    "status": {
-      "type": "string",
-      "enum": ["success", "error", "partial"],
-      "description": "Whether the run completed successfully."
-    },
-    "report_produced": {
-      "type": "boolean",
-      "description": "True if the run produced a report (status was not 'no-change')."
-    },
-    "report_id": {
-      "type": ["string", "null"],
-      "description": "The run_id from the associated report record, if one was produced."
-    },
-    "error_message": {
-      "type": ["string", "null"],
-      "description": "Error message if status is 'error' or 'partial'."
-    },
-    "sources_checked": {
-      "type": "integer",
-      "description": "Number of sources checked during this run."
-    }
+    "started_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": "string", "format": "date-time" },
+    "execution_status": { "type": "string", "enum": ["success", "error", "partial"] },
+    "change_status": { "type": "string", "enum": ["report", "no-change", "escalation"] },
+    "report_produced": { "type": "boolean" },
+    "notification_sent": { "type": "boolean" },
+    "report_id": { "type": ["string", "null"], "minLength": 1 },
+    "error_message": { "type": ["string", "null"] },
+    "sources_checked": { "type": "integer", "minimum": 0 }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "change_status": { "const": "no-change" } },
+        "required": ["change_status"]
+      },
+      "then": {
+        "properties": {
+          "report_produced": { "const": false },
+          "notification_sent": { "const": false },
+          "report_id": { "const": null }
+        },
+        "required": ["report_id"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "change_status": { "enum": ["report", "escalation"] } },
+        "required": ["change_status"]
+      },
+      "then": {
+        "properties": {
+          "report_produced": { "const": true },
+          "report_id": { "type": "string", "minLength": 1 }
+        },
+        "required": ["report_id"]
+      }
+    }
+  ],
   "additionalProperties": false
 }
