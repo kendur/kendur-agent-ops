@@ -1,0 +1,70 @@
+name: Research Finding
+description: Submit a research finding for review and potential inclusion in the project record.
+title: "[Finding] "
+labels: ["research-finding"]
+body:
+  - type: dropdown
+    id: agent
+    attributes:
+      label: Source agent or contributor
+      options:
+        - behavioral-research-analyst
+        - capture-ecosystem-analyst
+        - market-community-analyst
+        - human contributor
+    validations:
+      required: true
+
+  - type: dropdown
+    id: claim_type
+    attributes:
+      label: Claim type
+      description: How should this finding be classified?
+      options:
+        - evidence (observable data with a cited source)
+        - inference (conclusion drawn from evidence)
+        - vendor-claim (vendor's statement about their own product)
+        - opinion (assessment not derived from cited sources)
+    validations:
+      required: true
+
+  - type: textarea
+    id: finding
+    attributes:
+      label: Finding
+      description: State the finding in one or two sentences.
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: "Provide: URL, title, author (if known), publication, and access date."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: confidence
+    attributes:
+      label: Confidence
+      options:
+        - high
+        - medium
+        - low
+    validations:
+      required: true
+
+  - type: textarea
+    id: relevance
+    attributes:
+      label: Relevance to the project
+      description: Why does this finding matter for the Executive Support System?
+    validations:
+      required: true
+
+  - type: textarea
+    id: conflicts
+    attributes:
+      label: Conflicts with prior findings?
+      description: Does this contradict any existing finding or project assumption?

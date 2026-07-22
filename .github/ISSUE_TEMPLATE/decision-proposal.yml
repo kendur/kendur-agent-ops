@@ -1,0 +1,63 @@
+name: Decision Proposal
+description: Propose a consequential decision for human review.
+title: "[Decision Proposal] "
+labels: ["decision-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when an agent or contributor is proposing a consequential decision that requires human approval before it takes effect.
+        See `docs/human-approval-boundaries.md` for the full list of decisions that require human approval.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why is this decision needed? What situation prompted it?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_decision
+    attributes:
+      label: Proposed decision
+      description: What action or choice are you proposing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other options were considered and why were they not chosen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Consequences
+      description: What are the expected consequences if this decision is accepted?
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Supporting sources
+      description: List any sources supporting this proposal (URL, title, access date, claim type).
+
+  - type: checkboxes
+    id: adr
+    attributes:
+      label: ADR required?
+      options:
+        - label: This decision requires a new ADR in docs/decisions/
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I understand this proposal must be explicitly accepted by a human maintainer before it takes effect.
+          required: true

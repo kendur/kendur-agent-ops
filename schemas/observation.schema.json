@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "observation.schema.json",
+  "title": "Observation",
+  "description": "A single observation recorded by an agent during a run.",
+  "type": "object",
+  "required": ["observation_id", "agent", "run_date", "claim", "claim_type", "confidence", "source"],
+  "properties": {
+    "observation_id": {
+      "type": "string",
+      "description": "Unique identifier for this observation (e.g., ISO 8601 timestamp + agent + index)."
+    },
+    "agent": {
+      "type": "string",
+      "enum": [
+        "project-historian",
+        "capture-ecosystem-analyst",
+        "behavioral-research-analyst",
+        "market-community-analyst"
+      ]
+    },
+    "run_date": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date the observation was recorded."
+    },
+    "claim": {
+      "type": "string",
+      "description": "The specific assertion being recorded."
+    },
+    "claim_type": {
+      "type": "string",
+      "enum": ["evidence", "inference", "vendor-claim", "opinion"],
+      "description": "Classification of the claim. See standards/EVIDENCE_SCHEMA.md."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"],
+      "description": "Confidence in the claim. See standards/CONFIDENCE_STANDARD.md."
+    },
+    "source": {
+      "type": "object",
+      "required": ["url", "title", "access_date"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "title": { "type": "string" },
+        "access_date": { "type": "string", "format": "date" },
+        "author": { "type": ["string", "null"] },
+        "publication": { "type": ["string", "null"] }
+      }
+    },
+    "conflicts_with": {
+      "type": ["array", "null"],
+      "items": { "type": "string" },
+      "description": "Observation IDs that this observation conflicts with."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional tags for filtering and categorization."
+    }
+  },
+  "additionalProperties": false
+}
