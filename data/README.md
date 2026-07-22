@@ -1,14 +1,23 @@
 # Data
 
-This directory holds reference data and example records used for development and validation.
+This directory contains synthetic reference data for schema validation and implementation testing.
 
-## Structure
+## Examples
 
-- `examples/` — example JSON records conforming to the schemas in `schemas/`. Use these to test schema validation and understand expected output formats.
+`data/examples/` includes valid examples for:
+
+- observation;
+- standard report;
+- no-change report;
+- decision proposal;
+- capture ecosystem product score;
+- no-change agent run.
+
+The examples use dates on or after repository creation and were validated against the corresponding JSON Schema Draft-07 definitions before commit.
 
 ## Rules
 
-- Data files in this directory are reference material, not production data.
-- No real user data, credentials, or proprietary third-party data should be stored here.
-- Production agent output belongs in `reports/`, not here.
-- Files in this directory may be edited; they are not subject to the append-only policy that applies to `reports/`.
+- Use synthetic data only.
+- Do not store credentials, personal data, private recordings, or proprietary third-party information.
+- Production run records and reports belong in their configured append-only storage location.
+- Reference examples may change when schemas change; update and revalidate them in the same pull request.
