@@ -39,7 +39,7 @@ This document defines how evidence is structured when agents record observations
 
 ## Inferences
 
-When claim_type is `inference`, the agent must identify which evidence items support the inference. Inferences must not be presented as findings.
+When claim_type is `inference`, the agent must identify which evidence items support the inference. Inferences must be labeled as inferences in the report and must not be presented as if they were direct observations or findings from a cited source.
 
 ## Conflicts
 
