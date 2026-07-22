@@ -1,48 +1,45 @@
 # Reporting Standard
 
-All agent reports must follow this standard. See also `docs/communication-standard.md` for the three-item rule.
+## Human-facing report
 
-## Required report sections
+A `report` or `escalation` contains:
 
-### 1. Key Items (required if status is "report")
-
-At most three items. Each is one sentence or a short phrase. No supporting detail in this section.
-
-### 2. Detail (optional)
-
-Supporting information for each key item. Organized by item number or topic. May link to separate documents for very long content.
-
-### 3. Sources (required if status is "report")
-
-A list of all cited sources. Each source follows the schema in `standards/SOURCE_POLICY.md`.
+1. **Key items** — one to three prioritized findings.
+2. **Detail** — supporting explanation organized by item.
+3. **Sources** — cited evidence with access dates and claim types.
 
 ## Status values
 
 | Status | Meaning |
 |---|---|
-| `report` | The agent has meaningful findings to share |
-| `no-change` | Nothing meaningful changed since the last run |
-| `escalation` | A finding requires urgent human attention; follow `ESCALATION_RULES.md` |
+| `report` | Meaningful findings are available |
+| `no-change` | No threshold was crossed |
+| `escalation` | Delay may materially harm the project |
 
-## No-change behavior
+## Every run is logged
 
-When status is `no-change`, the agent produces only the minimal record:
+Every scheduled or manual execution creates an `agent-run` record.
 
-```json
-{
-  "agent": "agent-name",
-  "run_id": "...",
-  "run_date": "YYYY-MM-DD",
-  "status": "no-change"
-}
-```
+A no-change run:
 
-No notification is sent for a no-change result.
+- sets `change_status` to `no-change`;
+- sets `report_produced` and `notification_sent` to false;
+- creates no human-facing report notification.
+
+## Lifecycle
+
+Reports begin in `generated` state and follow [REPORT_LIFECYCLE.md](REPORT_LIFECYCLE.md).
+
+A generated report may be committed as a draft internal project artifact. It does not become an official statement merely because the repository is public.
+
+## Evidence lineage
+
+Reports reference observation IDs. Inferences reference the evidence-observation IDs that support them. Conflicts are surfaced rather than averaged away.
 
 ## Avoiding drift
 
-Agents must not repeat information that has not changed since the last report. If an item was reported in the last run and has not changed, omit it unless it is still actively significant and the maintainer needs to be reminded.
+Do not repeat unchanged findings. Use a new record to correct or supersede a prior conclusion.
 
 ## Tone
 
-Plain language. No filler phrases ("it is important to note that…", "in conclusion…"). State the finding, state the source, move on.
+Use plain language. State what changed, why it matters, evidence, confidence, and recommended next action. Avoid filler.
