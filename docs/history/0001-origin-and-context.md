@@ -1,34 +1,38 @@
 # Origin and Context
 
 **Record number:** 0001  
-**Date:** 2026-07  
+**Date:** 2026-07-22  
 **Status:** Established
 
-## Why this project exists
+## Product origin
 
-This project originated from a specific and practical problem: the maintainer experiences executive dysfunction that makes it difficult to:
+The work began as a private Notion-centered system to compensate for rapid idea loss, task-initiation difficulty, interruption, and the need to preserve enough context to resume work.
 
-- capture a thought before it disappears;
-- return to a task after an interruption without losing the context needed to continue;
-- maintain continuous awareness of a market, a research area, or a project without dedicated monitoring;
-- convert observations and notes into clear next actions.
+The concept then expanded in a deliberate sequence:
 
-These are not abstract productivity concerns. They are recurring, costly, and addressable with the right tooling and support structure.
+1. personal executive-support system;
+2. Notion-centered manual core;
+3. product-capable module on the path toward Nexus;
+4. free and open community edition with optional paid services;
+5. capture-source-agnostic architecture;
+6. AI operations team for continuous research, market monitoring, and historical preservation.
 
-## The initial insight
+The product history and product decisions belong in <https://github.com/kendur/kendur-executive-support>.
 
-Existing tools—task managers, note-taking apps, PKM systems—are designed for people who can reliably return to them and consistently operate them. They do not address the problem of capture at the moment of thought, or of reconstructing context after it is lost.
+## Why an AI operations team
 
-A lightweight, Notion-centered system that handles capture and context recovery—and that AI can optionally assist with—was identified as a feasible first step.
+The project requires sustained attention across capture hardware, transcription platforms, behavioral research, competitors, communities, and changing project decisions. The maintainer cannot perform all recurring monitoring while also designing, testing, and building the product.
 
-## Why an AI agent team
+A structured agent team was created to gather and organize evidence, maintain history, and propose plans without taking final consequential decisions away from the maintainer.
 
-Monitoring tools, researching behavioral patterns, and tracking market developments requires sustained attention. Doing this manually while building the product is not sustainable. A structured AI agent team can handle that monitoring work, surface relevant findings, and keep the maintainer informed without requiring constant active effort.
+## Communication requirement
 
-## The decision to document first
+Long undifferentiated reports quickly lose the maintainer's attention. Agent reports therefore lead with no more than three key items. Daily monitoring is the initial default, while no-change runs remain silent to the human reader.
 
-Because the development process must remain historically understandable, this repository was established before any implementation work. All consequential decisions will be recorded as ADRs. The origin context is preserved here so future contributors and tools can understand how the project began.
+## Repository boundary
 
-## Use of "Personal" and "Work"
+This repository owns agent governance and agent-run history. The product repository owns product direction and product history. The Project Historian reviews both and proposes cross-references rather than duplicating or rewriting records.
 
-Throughout this project, the terms "Personal" and "Work" are used rather than any employer-specific terminology, to keep the project context neutral and portable.
+## Public terminology
+
+Public materials use Personal and Work profiles rather than employer-specific names.
