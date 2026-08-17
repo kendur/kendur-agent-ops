@@ -1,0 +1,30 @@
+version: 1
+updated_at: 2026-08-17T15:16:06-04:00
+standard: standards/FMA_OPERATING_STANDARD.md
+
+registration_contract:
+  required: true
+  queue_required: true
+  escalation_threshold_hours: 24
+  escalation_cadence: hourly
+  duplicate_issue_policy: reuse-existing
+  notify_only_on:
+    - escalated
+    - escalation-error
+
+instances:
+  - project: tSAC
+    instance: tSAC FMA
+    status: active
+    repository: kendur/BBEG-tSAC
+    primary_branch: main
+    decision_queue: AI_CONTEXT/fma_decision_queue.md
+    transfer_queue: AI_CONTEXT/fma_transfer_queue.md
+    issue_tracker: kendur/BBEG-tSAC
+    adjudication_label: needs-adjudication
+    escalation_threshold_hours: 24
+    escalation_cadence: hourly
+    local_standard: AI_CONTEXT/fma_operating_standard.md
+
+# Every future <Project> FMA must be added here in the same setup change
+# that creates or designates its project-local decision queue.
